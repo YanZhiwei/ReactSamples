@@ -11,6 +11,7 @@ export default class FormSample1 extends Component {
             { id: '02', listName: 'React', check: false },
             { id: '03', listName: 'Java', check: true }]
         }
+        this.filebox = React.createRef()
     }
     formChange = (event) => {
         let changeName = event.target.name;
@@ -69,6 +70,15 @@ export default class FormSample1 extends Component {
                     </div>
                     <div>
                         {ckLists}
+                    </div>
+                    <div>
+                        <label>上传文件</label>
+
+                        {/* 什么时候使用Refs：
+                        1.管理焦点、文本选择、媒体回放
+                        2.触发必要动画；
+                        3.整合第三方DOM库 */}
+                        <input type="file" ref={this.filebox} />
                     </div>
                     <input type="submit" value="提交" />
                 </form>
