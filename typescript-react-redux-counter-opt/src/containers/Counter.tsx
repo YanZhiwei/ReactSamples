@@ -17,7 +17,7 @@ class Counter extends React.Component<ICounterProps> {
         //const onDecrement=this.props.onDecrement;
         return (
             <p>
-                Clicked: {value} times
+                点击: {value} 次数
                 <br />
                 <br />
                 <button onClick={onIncrement} style={{ marginRight: 20 }}> +  </button>
