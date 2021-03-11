@@ -1,21 +1,22 @@
 const tiger = 10000
 
 //这是action
-const increase = {
+export const increase = {
     type: '涨工资'
 }
-const decrease = {
+export const decrease = {
     type: '扣工资'
 }
 //这是reducer
 const reducer = (state = tiger, action) => {
     switch (action.type) {
-        case '涨工资':
+        case increase.type:
             return state += 100;
-        case '扣工资':
+        case decrease.type:
             return state -= 100;
         default:
             return state;
     }
 }
-export default reducer
+
+export default reducer;

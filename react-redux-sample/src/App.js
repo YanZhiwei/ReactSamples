@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { increase, decrease } from './App.Reducer';
 import { connect } from 'react-redux';
 
 class App extends Component {
@@ -25,8 +26,8 @@ function mapStateToProps(state) {
 //需要触发什么行为
 function mapDispatchToProps(dispatch) {
   return {
-    PayIncrease: () => dispatch({ type: '涨工资' }),
-    PayDecrease: () => dispatch({ type: '扣工资' })
+    PayIncrease: () => dispatch({ type: increase.type }),
+    PayDecrease: () => dispatch({ type: decrease.type })
   }
 }
 //connect:把指定的state和指定的action与React组件连接起来，后面括号里面写UI组件名。
