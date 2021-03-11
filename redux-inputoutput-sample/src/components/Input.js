@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { submitValue } from '../redux/actions/submittedValueAction';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { submitValue } from "../redux/actions/submittedValueAction";
 
 class Input extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            'inputValue': this.props.defaultInput,
+            inputValue: this.props.defaultInput,
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,7 +23,7 @@ class Input extends Component {
     }
 
     handleReset(event) {
-        this.setState({ inputValue: '' });
+        this.setState({ inputValue: "" });
         event.preventDefault();
     }
 
@@ -32,7 +32,12 @@ class Input extends Component {
             <div>
                 <form onSubmit={this.handleSubmit} onReset={this.handleReset}>
                     <label>
-                        Input: <input type="text" value={this.state.inputValue} onChange={this.handleChange} />
+                        Input:{" "}
+                        <input
+                            type="text"
+                            value={this.state.inputValue}
+                            onChange={this.handleChange}
+                        />
                     </label>
                     <input type="submit" value="Submit" />
                     <input type="reset" value="Clear" />
@@ -46,13 +51,13 @@ class Input extends Component {
 // props is the props from the parent component (which is App.js in this case)
 const mapStateToProps = (state, props) => {
     return {
-        defaultInput: props.defaultInput + ' ' + state.submittedValue
+        defaultInput: props.defaultInput + " " + state.submittedValue,
     };
 };
 
 // onSubmitValue is used to avoid naming conflicts with submitValue
 const mapActionsToProps = {
-    onSubmitValue: submitValue
-}
+    onSubmitValue: submitValue,
+};
 
 export default connect(mapStateToProps, mapActionsToProps)(Input);
