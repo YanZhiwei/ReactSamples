@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Table, Tag, Space } from 'antd';
 import { connect } from 'umi';
 import UserModal from './components/UserModal';
-const index = ({ users }) => {
+const index = ({ users, dispatch }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [record, setRecord] = useState(undefined);
     const columns = [
@@ -33,18 +33,33 @@ const index = ({ users }) => {
         },
     ];
     const handleEdit = record => {
-        console.log("handleEdit:" + record);
-        setRecord(JSON.stringify(record));
+        console.log("handleEdit:" + JSON.stringify(record));
+        setRecord(record);
         setModalVisible(true);
     };
-
-    const handleModalClose = () => {
+    const handleModalCancel = () => {
+        setModalVisible(false);
+    };
+    const handleModalOk = () => {
+        setModalVisible(false);
+    };
+    const handleModalFinish = values => {
+        const id = record.id;
+        console.log('handleModalFinish:', values + "id:" + id);
+        dispatch({
+            type: "users/edit",
+            playload: {
+                id,
+                values
+            }
+        });
         setModalVisible(false);
     };
     return (
         <div>
-            <Table className="list-table" columns={columns} dataSource={users.data} rowKey="id" />
-            <UserModal visible={modalVisible} handleOk={handleModalClose} handleCancel={handleModalClose} record={record}></UserModal>
+            <Table columns={columns} dataSource={users.data} rowKey="id" />
+            <UserModal visible={modalVisible} handleOk={handleModalOk} handleCancel={handleModalCancel} record={record}
+                handleFinish={handleModalFinish}></UserModal>
         </div>
     )
 }
