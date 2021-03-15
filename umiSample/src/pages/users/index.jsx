@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Table, Tag, Space } from 'antd';
+import { Table, Space, Button } from 'antd';
 import { connect } from 'umi';
 import UserModal from './components/UserModal';
 const index = ({ users, dispatch }) => {
@@ -44,19 +44,38 @@ const index = ({ users, dispatch }) => {
         setModalVisible(false);
     };
     const handleModalFinish = values => {
-        const id = record.id;
-        console.log('handleModalFinish:', values + "id:" + id);
-        dispatch({
-            type: "users/edit",
-            playload: {
-                id,
-                values
-            }
-        });
+        let id = 0;
+        if (record) {
+            id = record.id;
+        }
+        if (id) {
+            console.log('handleModalFinish:', values + "id:" + id);
+            dispatch({
+                type: "users/edit",
+                playload: {
+                    id,
+                    values
+                }
+            });
+        }
+        else {
+            dispatch({
+                type: "users/add",
+                playload: {
+                    id,
+                    values
+                }
+            });
+        }
         setModalVisible(false);
     };
+    const handleModalAdd = () => {
+        setModalVisible(true);
+        setRecord(undefined);
+    }
     return (
         <div>
+            <Button type="primary" onClick={handleModalAdd}>Add</Button>
             <Table columns={columns} dataSource={users.data} rowKey="id" />
             <UserModal visible={modalVisible} handleOk={handleModalOk} handleCancel={handleModalCancel} record={record}
                 handleFinish={handleModalFinish}></UserModal>

@@ -1,5 +1,5 @@
 import { Effect, ImmerReducer, Reducer, Subscription } from 'umi';
-import { getRemoteList, editRecord } from './service'
+import { getRemoteList, editRecord, addRecord } from './service'
 const IndexModel = {
     namespace: 'users',
     state: {
@@ -19,8 +19,14 @@ const IndexModel = {
             console.log("edit:" + JSON.stringify(values));
             const data = yield call(editRecord, { id, values });
             yield put({
-                type: "editRecord",
-                playload: data
+                type: "query"
+            });
+        },
+        *add({ playload: { values } }, { call, put }) {
+            console.log("add:" + JSON.stringify(values));
+            const data = yield call(addRecord, { values });
+            yield put({
+                type: "query"
             });
         },
     },
