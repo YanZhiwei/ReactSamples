@@ -53,14 +53,14 @@ const index = ({ users }) => {
     ];
     return (
         <div>
-            <Table className="list-table" columns={columns} dataSource={users} />
+            <Table className="list-table" columns={columns} dataSource={users.data} />
         </div>
     )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ users }) => {
     return {
-        users: state.users
+        users
     }
 }
 
