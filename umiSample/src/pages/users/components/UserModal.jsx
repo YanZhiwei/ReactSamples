@@ -3,10 +3,10 @@ import { Modal, Button } from 'antd';
 const UserModal = (props) => {
     return (
         <div>
-            <Modal title="Basic Modal" visible={props.visible} >
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
+            <Modal title="Basic Modal" visible={props.visible}
+                onOk={props.handleOk}
+                onCancel={props.handleCancel}>
+                {JSON.stringify(props.record)}
             </Modal>
         </div>
     )
