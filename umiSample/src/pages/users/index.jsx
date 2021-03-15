@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Table, Tag, Space } from 'antd';
 import { connect } from 'umi';
-
+import UserModal from './components/UserModal';
 const index = ({ users }) => {
     const columns = [
         {
@@ -33,6 +33,7 @@ const index = ({ users }) => {
     return (
         <div>
             <Table className="list-table" columns={columns} dataSource={users.data} rowKey="id" />
+            <UserModal visible={false}></UserModal>
         </div>
     )
 }
