@@ -11,9 +11,7 @@ const IndexModel = {
             console.log("query:" + data);
             yield put({
                 type: "getList",
-                playload: {
-                    data
-                },
+                playload: data
             });
         },
     },
